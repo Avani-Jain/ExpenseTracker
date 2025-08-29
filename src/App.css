@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,92 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+body{
+  background-color: #17181f;
+  color: #ddd;
+  font-size: medium;
+}
+main{
+  max-width: 350 px;
+  margin: 0 auto;
+  text-align: center;
+}
+h1{
+  text-align: center;
+  color: #fff;
+}
+form{
+  text-align: center;
+  font-size: large;
+  margin-top: 50px;
+}
+form input{
+  text-align: center;
+  /* width: 100%; */
+  background-color: transparent;
+  display: flexbox;
+  color: #ddd;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  color-scheme: dark;
+  padding: 2px 5px;
+}
+::placeholder{
+  color: #ddd;
+
+}
+/* form input [type="date"]::-webkit-calendar-picker-indicator{
+  color: #ddd;
+  
+} */
+form button{
+  width: 30%;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: #D3DAD9 ;
+  border-radius: 10px;
+  text-align: center;
+
+  font-size: 15px;
+  border: 0;
+}
+div.transactions{
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+div.single_transaction
+{
+  justify-content: center;
+  text-align: left;
+  display: flex;
+  padding: 10px 0;
+  border-top: 1px solid #30313d;
+}
+
+div.single_transaction:first-child{
+  border-top: 3px double #ddd;
+}
+div.left{
+  padding-right: 10%;
+}
+
+div.description{
+  font-size: 10px;
+}
+div.name{
+  font-size: 17px;
+}
+div.datetime{
+  font-size: 10px;
+}
+div.price_green{
+  color: green;
+  font-weight: bold;
+}
+div.price_red{
+  color: red;
+  font-weight: bold;
 }
