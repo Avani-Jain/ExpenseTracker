@@ -66,6 +66,7 @@ form input{
   border-radius: 5px;
   color-scheme: dark;
   padding: 2px 5px;
+  gap: 5px;
 }
 ::placeholder{
   color: #ddd;
@@ -75,22 +76,50 @@ form input{
   color: #ddd;
   
 } */
-form button{
+ .buttons{
   width: 30%;
   padding: 5px;
-  margin-top: 10px;
+  margin-top: 5px;
   background-color: #D3DAD9 ;
   border-radius: 10px;
   text-align: center;
-
   font-size: 15px;
   border: 0;
 }
+.calculate{
+  margin-top: 15px;
+  border-top: 1px dotted #ddd;
+  border-bottom: 1px dotted #ddd;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 20px;
+  justify-content: center;
+}
+
 div.transactions{
   font-size: 15px;
   margin-top: 20px;
 }
 
+.show{
+  /* border-color: #ddd; */
+  color: #000;
+  width: 20%;
+  height: 25px;
+  background-color: transparent;
+  /* background-color: #D3DAD9 ; */
+  margin-top: 10px;
+  display: flexbox;
+  color: #ddd;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  color-scheme: dark;
+  padding: 2px 5px;
+  
+}
 div.single_transaction
 {
   justify-content: center;

@@ -1,3 +1,10 @@
+const { MongoClient, ServerApiVersion } = require('mongodb');
+require("dotenv").config();
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+
+const Transaction = require('./models/transaction')
+const mongoose = require('mongoose')
 const express = require('express');
 const cors = require('cors');
 
@@ -11,9 +18,18 @@ app.get('/', (req, res) => {
     res.send({ body: "testing successful" });
 });
 
-app.post('/api/transaction', (req, res) => {
-    console.log("received transaction: ", req.body);
-    res.json(req.body);
+app.post('/api/transaction',async(req, res) => {
+    const{amount, item, date, description} = req.body;
+    await mongoose.connect(process.env.MONGO_URL);
+    const transaction = await Transaction.create({item, description, date, amount});
+    res.json(transaction);
+});
+
+app.get("/api/getAllTransactions", async(req, res)=>{
+    await mongoose.connect(process.env.MONGO_URL);
+    const getAll = await Transaction.find()
+    console.log(getAll);
+    res.json(getAll)
 });
 
 app.listen(PORT, "0.0.0.0", () => {
