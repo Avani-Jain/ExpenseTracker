@@ -99,35 +99,93 @@ async function waitForBackend(url, retries = 5, delay = 1000) {
     let sum = transactions.reduce((acc, t) => acc + t.amount, 0);
     setTotal(sum);
   }
-
-  if(backendReady === null){
-        return <main>Checking backend...</main>;
+  
+  if (backendReady === null) {
+    return <main >Checking backend...</main>;
   }
-  if(backendReady === false){
-     return (
-      <main >
+
+  if (backendReady === false) {
+    return (
+      <main>
         <h1>Backend Service Not Available</h1>
         <p>Please start the backend service before using the app.</p>
         <p>
-          <a href="https://" target="_blank" rel="noreferrer">Start Backend Service</a>
+          <a href="YOUR_BACKEND_START_LINK_HERE" target="_blank" rel="noreferrer">Start Backend Service</a>
         </p>
         <button onClick={reloadPage}>Reload Page</button>
       </main>
     );
   }
-
   return (
-      <main style={{ textAlign: "center", padding: "50px" }}>
-        <h1>Backend Service Not Available</h1>
-        <p>Please start the backend service before using the app.</p>
-        <p>
-          <a href="YOUR_BACKEND_START_LINK_HERE" target="_blank" rel="noreferrer">
-            Start Backend Service
-          </a>
-        </p>
-        <button onClick={reloadPage}>Reload Page</button>
-      </main>
-    );
+    <main>
+      <h1>EXPENSE TRACKER</h1>
+
+      <form onSubmit={addNewTransaction}>
+        <div className="basic">
+          <input type="text" value={amount} onChange={handleAmountChange} placeholder={"amount"}
+            style={{
+              border: amountError ? "1px solid red" : "2px solid #ddd"
+            }} />
+          {amountError && (
+            <div style={{ color: "red", fontSize: "0.8rem" }}>
+              {amountError}
+            </div>
+          )}
+          <input type="text" value={item} onChange={event => setItem(event.target.value)} placeholder={'Item bought'} />
+
+        </div>
+        <div>
+          <input type="date" value={date} onChange={handleDateChange}
+            max={new Date().toISOString().split("T")[0]} />
+        </div>
+        {dateError && (
+          <div style={{ color: "red", fontSize: "0.8rem" }}>
+            {dateError}
+          </div>
+        )}
+        <div className="description">
+          <input type="text" value={description} onChange={event => setDescription(event.target.value)} placeholder={"description"} />
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="type" value="expense" checked={type === "expense"} onChange={() => setType("expense")} />Expense
+          </label>
+          <label><input type="radio" name="type" value="earned" checked={type === "earned"} onChange={() => setType("earned")} />Earned</label>
+        </div>
+        <br></br>
+        <button className="buttons"> <b>Add New Transaction</b></button>
+      </form>
+      <div className='calculate'>
+        <button className="buttons" id="calculate_button" onClick={calculateTotal}> <b>Calculate Total Expenditure</b></button>
+        <label className="show" style={{ color: total < 0 ? "red" : "green" }}> {total !== 0 ? Math.abs(total) : "-"} </label>
+      </div>
+      <div className='showTransactions'>
+        <button className="buttons" onClick={showTransactions}> <b>Show Transactions</b> </button>
+      </div>
+      <div className="transactions">
+        {transactions.length === 0 ? (
+          <div>no transactions yet </div>
+        ) : (
+          transactions.map((t, index) => (
+            <div key={index} className='single_transaction'>
+              <div className='left'>
+                <div className="name"> {t.item}
+                </div>
+                <div className='description'>{t.description}</div>
+              </div>
+              <div className="right">
+                <div className={`price${t.amount < 0 ? "_red" : "_green"}`}>{t.amount}</div>
+                <div className="datetime"> {new Date(t.date).toLocaleDateString()}</div>
+              </div>
+            </div>
+          )
+          ))}
+      </div>
+
+
+    </main>
+  )
 }
+
 
 export default App;
