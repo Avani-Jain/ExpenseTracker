@@ -13,7 +13,7 @@ function App() {
 // GVeeXHkIKcE70fSj
 
 function showTransactions(event){
-  const url = process.env.REACT_APP_API_URL+"/getAllTransactions";
+  const url = process.env.REACT_APP_API_URL+"/api/getAllTransactions";
   
   fetch(url)
   .then(res =>res.json())
@@ -28,7 +28,7 @@ useEffect(()=>{
   function addNewTransaction(event){
     // FileSystem.preventDefault()
     event.preventDefault();
-    const url =process.env.REACT_APP_API_URL+'/transaction';
+    const url =process.env.REACT_APP_API_URL+'/api/transaction';
     console.log(url);
     const finalAmount = type==="expense"?-Math.abs(amount): Math.abs(amount);
     fetch(url, {
