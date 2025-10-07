@@ -27,7 +27,7 @@ async function waitForBackend(url, retries = 5, delay = 1000) {
   }
 
   useEffect(() => {
-    const backendUrl = process.env.REACT_APP_URL + "/api/getAllTransactions";
+    const backendUrl = process.env.REACT_APP_API_URL + "/api/getAllTransactions";
     waitForBackend(backendUrl).then(isReady => {
       setBackendReady(isReady);
       if (isReady) showTransactions();
